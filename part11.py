@@ -60,9 +60,7 @@ class My_randomseq():
 m=My_randomseq(my_seq)
 r=My_randomseq.rev_c(my_seq)
 p=My_randomseq.protein(my_seq)
-print(m)
-print(r)
-print(p)
+
 
 
 
