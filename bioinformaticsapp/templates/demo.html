@@ -5,16 +5,18 @@
     <title> Web for bioinformatics beginners </title>
 </head>
 <body>
+
     <h1> Let's start with generating your first random DNA sequence </h1>
-    <form action='/msggate/' method='post'>
-        Please enter an integer number:  <input type='text'  /> <br>
-        <input type="submit" value="enter No">
+    <form action='/index2/' method='post'>
+        Please enter an integer number:  <input type="number" name="integer"  /> <br>
+        <input type="submit" value="submit">
     </form>
 
     <h1> My random DNA sequence is:  </h1>
-    <form action='/msggate/' method='get'>
-        your Seq <input type="text" /> <br>
-        <input type='submit' value="get Seq">
+    <form action='/index2/' method='get'>
+        <table border="1">
+            <seq> {{randomdna}} </seq>
+        <table>
     </form>
 
 </body>
