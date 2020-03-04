@@ -86,7 +86,6 @@ def find_lmotif(s1,s2):
 
 l=find_lmotif(sequence1,sequence2)
 
-# generate your first fasta file
 
 
 
