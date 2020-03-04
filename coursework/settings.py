@@ -26,7 +26,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'coursework.urls'
 
-# set bioinformatics templates as framework templates, main path and templates path
+# set templates path
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
