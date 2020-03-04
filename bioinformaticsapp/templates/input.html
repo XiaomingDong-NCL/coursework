@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+    <head>
+        <meta charset="UTF-8">
+        <title> Web for bioinformatics beginners </title>
+    </head>
+
+    <body>
+
+        <h1> Let's start with generating your first random DNA sequence </h1>
+        <form action='/input/' method='get'>
+            Please enter an integer number:  <input type='number' name="length" />
+        <button type="submit" value="submit">  submit </button>
+        </form>
+
+        <h1> Your random DNA sequence <h1>
+        <form action='/test/' method='post'>
+        {% csrf_token %}
+            <p> Seq <output type='text' name="seq" /> <textarea></textarea> </p>
+        </form>
+
+    </body>
+</html>
