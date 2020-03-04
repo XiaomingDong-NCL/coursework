@@ -1,20 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from random import choice
 from Bio.Seq import Seq
+from django import forms
+from bioinformaticsapp.forms import DnaForm
 
 # transfer the input number to random sequence and store it in randomdna.txt file
 # define request.method == 'get' to get this sequence
+
 def bioinformatics(request):
-    if request.method == 'post':
-        i=request.post.get("integer", None)
-        with open('randomdna.txt', 'a+') as f:
-            sequence = ''
-            for i in range(int(i)):
+    if request.method == "GET":
+        length = DnaForm(request.GET or None)
+        if length.is_valid():
+            length=DnaForm.changed_data['length']
+            for i in range(length):
+                sequence = ''
                 sequence += choice('ATCG')
-            f.write("{}".format(sequence))
-    if request.method == 'get':
-        with open('randomdna.txt', 'r') as f:
-            randomdna=f.readlines()
-    return render(request,'demo.html', {'data': randomdna})
+                return sequence
+    return render(request,'demo.html',{'length':length} )
+
+
+
 
