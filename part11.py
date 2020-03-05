@@ -7,7 +7,8 @@ from Bio.Seq import Seq
 while True:
     try:
         x = int(input("Please enter a random integer number: "))
-        break
+        if x > 0 :
+            break
     except ValueError:
         print("Oops! That was no valid number. Try again...")
 
