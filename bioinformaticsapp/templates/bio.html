@@ -5,11 +5,13 @@
          <title> Web for bioinformatics beginners </title>
      </head>
      <body>
+     <div>
 
          <h1> Let's start with generating your first random DNA sequence </h1>
          <form action='/bio/' method='post'>
-             Please enter an integer number:  <input type='number' step= '1' name="length" />
-             <input type="submit">
+             Please enter an integer number:  <input type='number' min="1" step="1" name="length" />
+             <input type="submit"> <br>
+
          </form>
 
          <h3>  Function requests </h3>
@@ -21,9 +23,12 @@
 
 
          <h3> Results </h3>
-             Random sequence {{myRandomseq}} <br>
-             Reverse_complement sequence {{myRCSeq}} <br>
-             Protein {{myProtei n}} <br>
-
+             Random sequence <br>
+             <textarea>{{myRandomseq}} </textarea><br>
+             Reverse_complement sequence <br>
+             <textarea> {{myRCSeq}} </textarea> <br>
+             Protein {{myProtein}} <br>
+              <textarea>{{myProtein}} </textarea><br>
+     </div>
      </body>
  </html>
