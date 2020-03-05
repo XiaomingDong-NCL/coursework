@@ -6,8 +6,6 @@ from django.core.files import File
 import subprocess as sp
 from Bio.Seq import Seq
 
-
-
 # set homepage
 def homeroot(request):
     return HttpResponse("<h1>This is the homepage, please click <a href=' ./bio'> here </a> to continue </h1>")
