@@ -5,6 +5,7 @@ from random import choice
 from django.core.files import File
 import subprocess as sp
 from Bio.Seq import Seq
+from part11 import My_randomseq
 
 # set homepage
 def homeroot(request):
@@ -17,22 +18,24 @@ def hello(request):
 # put this number to variable length and generate a random DNA sequence with this length
 
 def bioinformatics(request):
+    randomseq = ''
+    myRandomseq = ''
+    myRCSeq = ''
+    myProtein = ''
     if request.method == "POST":
         inputlength = request.POST.get('length', None)
         length = DnaForm(inputlength)
         if length.is_valid():
             l=length.cleaned_data['length']
-            sequence = ''
             for i in range(l):
-                sequence += choice('ATCG')
-        with open('../coursework/results.txt', 'a+') as f:
-            f.write('{}'.format(sequence))
-    if request.method == 'GET':
-        mydan=''
-        with open('../coursework/results.txt', 'r') as f:
-            seq=''
-            for line in f:
-                seq.append(line)
-                mydan=seq
-    return render(request, 'bio.html',{'seq':mydan})
+                randomseq += choice('ATCG')
+                return randomseq
+            myRandomseq=Seq(randomseq)
+            myRCSeq = My_randomseq.rev_c(myRandomseq)
+            myProtein=My_randomseq.protein(myRCSeq)
 
+    myRandomseq={'myRandomseq':myRandomseq}
+    myRCSeq={'myRCSeq': myRCSeq}
+    myProtein={'myProtein': myProtein }
+
+    return render(request, 'bio.html', myRandomseq, myRCSeq, myProtein )

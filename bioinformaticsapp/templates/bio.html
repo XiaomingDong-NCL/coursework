@@ -7,13 +7,13 @@
      <body>
 
          <h1> Let's start with generating your first random DNA sequence </h1>
-         <form action='/input/' method='post'>
+         <form action='/bio/' method='post'>
              Please enter an integer number:  <input type='number' step= '1' name="length" />
              <input type="submit">
          </form>
 
          <h3>  Function requests </h3>
-         <form action='/input/' method='get'>
+         <form action='/bio/' method='post'>
          Random sequence <input type="submit", value=" submit "> <br>
          Reverse_complement sequence <input type="submit", value=" submit "> <br>
          Protein <input type="submit", value=" submit "> <br>
@@ -21,15 +21,9 @@
 
 
          <h3> Results </h3>
-         <form>
-             <table border="1">
-                    {% for line in data %}
-                 <tr>
-                     <td align="left">{{sequence}}</td>
-                 </tr>
-                 {% endfor %}
-             </table>
-         </form>
+             Random sequence {{myRandomseq}} <br>
+             Reverse_complement sequence {{myRCSeq}} <br>
+             Protein {{myProtein}} <br>
 
      </body>
  </html>
