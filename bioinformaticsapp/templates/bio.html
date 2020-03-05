@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+ <html lang="en" >
+     <head>
+         <meta charset="UTF-8">
+         <title> Web for bioinformatics beginners </title>
+     </head>
+     <body>
+
+         <h1> Let's start with generating your first random DNA sequence </h1>
+         <form action='/input/' method='post'>
+             {% csrf_token %}
+             Please enter an integer number:  <input type='number' step= '1' name="length" />
+             <input type="submit">
+         </form>
+
+         <h2>  Function requests </h2>
+         <form action='/input/' method='get'>
+         Random sequence <input type="submit", value=" submit "> <br>
+         Reverse_complement sequence <input type="submit", value=" submit "> <br>
+         Protein <input type="submit", value=" submit "> <br>
+         <form> <br>
+
+
+         <h3> Results </h3>>
+         <form>
+             <table border="1">
+                    {% for line in data %}
+                 <tr>
+                     <td align="left">{{sequence}}</td>
+                 </tr>
+                 {% endfor %}
+             </table>
+         </form>
+
+     </body>
+ </html>

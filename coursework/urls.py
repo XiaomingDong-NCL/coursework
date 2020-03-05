@@ -5,7 +5,8 @@ from bioinformaticsapp import views as bioviews
 
 # set urls
 urlpatterns = [
-    path('input/', include('bioinformaticsapp.urls')) ,
+    path('bio/', include('bioinformaticsapp.urls')) ,
     path('test/',views.hello),
     path('', bioviews.homeroot)
+
 ]

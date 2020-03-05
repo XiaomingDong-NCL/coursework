@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from random import choice
-from Bio.Seq import Seq
-from django import forms
 from bioinformaticsapp.forms import DnaForm
+from random import choice
+from django.core.files import File
+import subprocess as sp
+from Bio.Seq import Seq
+
+
 
 # set homepage
 def homeroot(request):
-    return HttpResponse("<h1>This is the homepage, please click <a href=' ./input'> here </a> to continue </h1>")
+    return HttpResponse("<h1>This is the homepage, please click <a href=' ./bio'> here </a> to continue </h1>")
 
 def hello(request):
     return render(request, 'test')
@@ -16,13 +19,22 @@ def hello(request):
 # put this number to variable length and generate a random DNA sequence with this length
 
 def bioinformatics(request):
-    sequence = ''
-    if request.method == "get":
-        l = request.GET.get('length')
-        l = DnaForm(l)
-        if l.is_valid():
-            l = DnaForm.cleaned_data['l']
+    if request.method == "POST":
+        inputlength = request.POST.get('length', None)
+        length = DnaForm(inputlength)
+        if length.is_valid():
+            l=length.cleaned_data['length']
+            sequence = ''
             for i in range(l):
                 sequence += choice('ATCG')
-            return sequence
-    return render(request,'input.html',{'length':sequence} )
+        with open('../coursework/results.txt', 'a+') as f:
+            f.write('{}'.format(sequence))
+    if request.method == 'GET':
+        mydan=''
+        with open('../coursework/results.txt', 'r') as f:
+            seq=''
+            for line in f:
+                seq.append(line)
+                mydan=seq
+    return render(request, 'bio.html',{'seq':mydan})
+
