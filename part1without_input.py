@@ -1,27 +1,23 @@
 from random import choice
 from Bio.Seq import Seq
 
-# take input number as the length of the random sequence
-# make sure the user enters an integer number
-
-while True:
-    try:
-        l = int(input("Please enter a random integer number greater than zero: "))
-        if l > 0 :
+# define a function that generates a random sequence and put it into Bio.Seq object
+def randomseq(l):
+    sequence = ''
+    while True:
+        try:
+            l = int(l or 1)
             break
-    except ValueError:
-        print("Oops! That was no valid number. Try again...")
-
-# generate a random sequence and put it into Bio.Seq object
-sequence = ''
-for i in range(int(l)):
-    sequence += choice('ATCG')
-    my_seq=Seq(sequence)
+        except ValueError:
+            print("Oops! That was no valid number. Try again...")
+    for i in range(int(l)):
+        sequence += choice('ATCG')
+        my_seq=Seq(sequence)
+    return my_seq
 
 # define a new class My_randomseq, taking the random sequence as input
 # reverse& complement classmethod，named rev_c(), taking the random sequence parameter
 # protein classmethod，named protein(), taking the random sequence parameter generating three possible proteins
-
 class My_randomseq():
 
     def __init__(self, x):
@@ -57,20 +53,4 @@ class My_randomseq():
 
     def __str__(self):
         return "{}".format(self.x)
-
-s=My_randomseq(my_seq)
-r=My_randomseq.rev_c(my_seq)
-p=My_randomseq.protein(my_seq)
-print('the length of DNA is: {}'.format(l))
-print('the random sequence is: {}'.format(s))
-print('the reverse_complement sequence is: {}'.format(r))
-print('the protein sequence that could be translated into is: {}'.format(p))
-
-
-
-
-
-
-
-
 
