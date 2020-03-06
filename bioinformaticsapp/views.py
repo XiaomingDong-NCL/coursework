@@ -18,22 +18,34 @@ def hello(request):
 # put this number to variable length and generate a random DNA sequence with this length
 @csrf_exempt
 def bioinformatics(request):
-    if request.method == "POST" and 'length':
-        length = request.GET.get('length')
-        myRandomseq = randomseq(length)
-        myRCSeq = My_randomseq(myRandomseq)
-        myRCSeq = My_randomseq.rev_c(myRandomseq)
-        myProtein = My_randomseq.protein(myRandomseq)
-        length = {'length': length}
-        myRandomseq = {'myRandomseq': myRandomseq}
-        myRCSeq = {'myRCSeq': myRCSeq}
-        myProtein = {'myProtein': myProtein}
-        if request.method == "POST" and 'myRandomseq':
-            return render(request, 'bio.html', myRandomseq)
-        elif request.method == "POST" and 'myRCSeq':
-            return render(request, 'bio.html', myRCSeq)
-        elif request.method == "POST" and 'myProtein':
-            return render(request, 'bio.html', myProtein)
-
-    else :
+    datalist = []
+    if request.method == "POST":
+        length = request.GET.get('length', None)
+        with open ('results.txt','w') as f:
+            myseq = randomseq(length)
+            myseq_s = My_randomseq(myseq)
+            myseq_rc = My_randomseq.rev_c(myseq)
+            myseq_p = My_randomseq.protein(myseq)
+            f.write("{}--{}--{}".format(myseq_s, myseq_rc, myseq_p))
         return render(request, 'bio.html')
+    if request.method == "GET" and 'myRandomseq':
+        with open ('results.txt','r') as f:
+            for line in f :
+                result = line.split('--')
+                datalist.append(result)
+        myRandomseq = {'myRandomseq': datalist}
+        return render(request, 'bio.html', myRandomseq)
+    if request.method == "GET" and 'myRCSeq':
+        with open ('results.txt','r') as f:
+            for line in f :
+                result = line.split('--')
+                datalist.append(result)
+        myRCSeq = {'myRCSeq': datalist}
+        return render(request, 'bio.html', myRCSeq)
+    if request.method == "GET" and 'myProtein':
+        with open ('results.txt','r') as f:
+            for line in f :
+                result = line.split('--')
+                datalist.append(result)
+        myProtein = {'myProtein': datalist}
+        return render(request, 'bio.html', myProtein)

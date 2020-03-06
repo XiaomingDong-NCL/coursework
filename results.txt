@@ -1,0 +1,1 @@
+C--G--[Seq('', ExtendedIUPACProtein()), Seq('', ExtendedIUPACProtein()), Seq('', ExtendedIUPACProtein())]
