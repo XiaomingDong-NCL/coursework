@@ -20,6 +20,7 @@ def hello(request):
 def bioinformatics(request):
     if request.method == "POST" :
         i= BioForm(request.POST)
+        l = None
         if i.is_valid():
             l = i.cleaned_data['integerlength']
             s = My_randomseq(l)
@@ -27,9 +28,9 @@ def bioinformatics(request):
             p = My_randomseq.protein(l)
             d = {'length':l, 'myRandomseq': s, 'myRCSeq': r, 'myProtein': p}
             d= i. save()
-            return redirect(request, 'bio.html', d)
+        return render(request, 'bio.html', {'length': l})
 
     if request.method == "GET":
-        i = BioForm()
+
         return render(request, 'bio.html' )
 
